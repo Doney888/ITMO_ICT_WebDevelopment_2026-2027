@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>ЛР №1 — Сокеты</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">ЛР №1 — Сокеты</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#no1" class="nav-link">Отчёт по лабораторной работе №1</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цель работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#no1-udp-" class="nav-link">Задание №1 — UDP-приветствие</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#no2-tcp-" class="nav-link">Задание №2 — TCP-математическая операция</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#no3-http-" class="nav-link">Задание №3 — HTTP-ответ из файла</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#no4" class="nav-link">Задание №4 — многопользовательский чат</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#no5-" class="nav-link">Задание №5 — веб-сервер оценок</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#http-" class="nav-link">Структура HTTP-обмена</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Тестирование</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Ограничения</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="no1">Отчёт по лабораторной работе №1</h1>
+<h2 id="_1">Цель работы</h2>
+<p>Освоить обмен данными через UDP и TCP, клиент-серверную архитектуру,
+многопоточную обработку подключений и базовую структуру HTTP-запросов и
+ответов.</p>
+<h2 id="no1-udp-">Задание №1 — UDP-приветствие</h2>
+<p><code>udp_client.py</code> отправляет датаграмму <code>Hello, server</code> на UDP-сервер.
+<code>udp_server.py</code> выводит полученный текст, отвечает <code>Hello, client</code> и завершает
+работу. Установление соединения не требуется, поскольку UDP работает с
+отдельными датаграммами.</p>
+<h2 id="no2-tcp-">Задание №2 — TCP-математическая операция</h2>
+<p>Выполнен вариант №2: площадь треугольника по основанию и высоте.</p>
+<p>Клиент запрашивает два числа и передаёт их серверу одной строкой. Сервер
+проверяет данные и вычисляет результат по формуле:</p>
+<pre><code class="language-text">S = a × h / 2
+</code></pre>
+<p>Основание и высота должны быть положительными. TCP обеспечивает надёжную
+доставку запроса и ответа.</p>
+<h2 id="no3-http-">Задание №3 — HTTP-ответ из файла</h2>
+<p>HTTP-сервер реализован непосредственно на TCP-сокете. Для GET-запроса он читает
+разметку из отдельного файла <code>index.html</code>, добавляет сохранённые данные и
+формирует HTTP/1.1-ответ со статусом, <code>Content-Type</code> и корректным
+<code>Content-Length</code> в байтах.</p>
+<h2 id="no4">Задание №4 — многопользовательский чат</h2>
+<p><code>chat_server.py</code> принимает TCP-подключения и создаёт отдельный
+<code>threading.Thread</code> для каждого клиента. Подключённые пользователи хранятся в
+общем словаре, доступ к которому защищён <code>threading.Lock</code>. Сообщение одного
+участника рассылается всем остальным. Сервер проверяет пустые и повторяющиеся
+имена, а команда <code>/quit</code> завершает клиентскую сессию.</p>
+<h2 id="no5-">Задание №5 — веб-сервер оценок</h2>
+<p>Тот же HTTP-сервер обрабатывает два метода:</p>
+<ul>
+<li>GET загружает <code>index.html</code> и возвращает форму со всеми сохранёнными оценками;</li>
+<li>POST разбирает тело <code>application/x-www-form-urlencoded</code>, проверяет поля
+  <code>subject</code> и <code>grade</code>, сохраняет запись и возвращает обновлённую страницу.</li>
+</ul>
+<p>Данные находятся в экземпляре <code>GradeBook</code> и существуют только до остановки
+процесса, как требуется для хранения в памяти.</p>
+<h2 id="http-">Структура HTTP-обмена</h2>
+<p>Сервер читает заголовки до разделителя <code>\r\n\r\n</code>, получает длину тела из
+<code>Content-Length</code> и дочитывает POST-тело полностью. Поддерживаются статусы:</p>
+<ul>
+<li><code>200 OK</code> для корректных GET и POST;</li>
+<li><code>400 Bad Request</code> для неполных или пустых данных;</li>
+<li><code>404 Not Found</code> для неизвестного пути;</li>
+<li><code>405 Method Not Allowed</code> для неподдерживаемого метода;</li>
+<li><code>500 Internal Server Error</code>, если файл <code>index.html</code> недоступен.</li>
+</ul>
+<h2 id="_2">Тестирование</h2>
+<p>Автоматические тесты проверяют:</p>
+<ul>
+<li>реальный UDP-обмен обязательными приветствиями через localhost;</li>
+<li>формулу площади, проверку параметров и реальный TCP-обмен;</li>
+<li>передачу сообщений между клиентами многопользовательского чата;</li>
+<li>ограничения строчного TCP-протокола;</li>
+<li>загрузку <code>index.html</code>, обработку GET и POST, хранение оценок;</li>
+<li>HTTP-статусы, <code>Content-Length</code> и полное чтение POST-тела.</li>
+</ul>
+<p>Команды запуска программ и проверок приведены в README.</p>
+<h2 id="_3">Ограничения</h2>
+<p>Все программы являются учебными. Шифрование и аутентификация отсутствуют.
+Оценки не сохраняются после перезапуска HTTP-сервера. Для подключения с другого
+устройства может потребоваться изменить <code>--host</code> и разрешить порт в
+брандмауэре.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-09-30 21:03:55.572255+00:00
+-->
