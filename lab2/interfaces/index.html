@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://doney888.github.io/ITMO_ICT_WebDevelopment_2026-2027/lab2/interfaces/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Интерфейсы и обработка запросов - Веб-программирование — Борисюк Евгений</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Веб-программирование — Борисюк Евгений</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">ЛР №1 — Сокеты</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">ЛР №2 — Конференции</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../" class="dropdown-item">Отчёт</a>
+</li>
+                                    
+<li>
+    <a href="../setup/" class="dropdown-item">Установка и запуск</a>
+</li>
+                                    
+<li>
+    <a href="../models/" class="dropdown-item">Архитектура и модель данных</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Интерфейсы и обработка запросов</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Тестирование и защита</a>
+</li>
+                                    
+<li>
+    <a href="../../practice/" class="dropdown-item">Практики 2.1–2.3</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../models/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../testing/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">Интерфейсы и обработка запросов</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Роли</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Основные маршруты</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Каталог</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Создание выступления</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">Редактирование и удаление</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_7" class="nav-link">Результаты и таблица участников</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#csrf" class="nav-link">Формы, CSRF и шаблоны</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_8" class="nav-link">Коды ответов</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_9" class="nav-link">Практические интерфейсы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">Интерфейсы и обработка запросов</h1>
+<h2 id="_2">Роли</h2>
+<p>Гость читает каталог, карточки и отзывы. После регистрации пользователь
+может добавлять выступления, управлять своими регистрациями и писать отзывы.
+Пользователь с is_staff видит таблицу участников, формы результатов и учебные
+страницы практик. Права Django-admin дополнительно регулируются стандартными
+разрешениями Django; суперпользователь имеет полный доступ.</p>
+<p>Проверки выполняются дважды по назначению: шаблон показывает доступные действия,
+а сервер проверяет право выполнить запрос. Ручной ввод URL или изменение POST
+не позволяют получить права только потому, что кнопка отсутствовала на странице.</p>
+<h2 id="_3">Основные маршруты</h2>
+<p>В таблице id — существующий идентификатор записи.</p>
+<table>
+<thead>
+<tr>
+<th>Маршрут</th>
+<th>Метод</th>
+<th>Действие</th>
+<th>Доступ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>GET</td>
+<td>Каталог, поиск, тематики, пагинация</td>
+<td>Все</td>
+</tr>
+<tr>
+<td>/accounts/signup/</td>
+<td>GET, POST</td>
+<td>Форма и создание пользователя</td>
+<td>Все</td>
+</tr>
+<tr>
+<td>/accounts/login/</td>
+<td>GET, POST</td>
+<td>Вход</td>
+<td>Все</td>
+</tr>
+<tr>
+<td>/accounts/logout/</td>
+<td>POST</td>
+<td>Завершение сессии</td>
+<td>Все; текущая сессия завершается</td>
+</tr>
+<tr>
+<td>/conferences/id/</td>
+<td>GET</td>
+<td>Карточка, своё выступление, отзывы</td>
+<td>Все</td>
+</tr>
+<tr>
+<td>/conferences/id/register/</td>
+<td>GET, POST</td>
+<td>Форма и создание выступления</td>
+<td>После входа</td>
+</tr>
+<tr>
+<td>/registrations/id/edit/</td>
+<td>GET, POST</td>
+<td>Изменение темы и аннотации</td>
+<td>Только автор</td>
+</tr>
+<tr>
+<td>/registrations/id/delete/</td>
+<td>GET, POST</td>
+<td>Подтверждение и удаление</td>
+<td>Только автор</td>
+</tr>
+<tr>
+<td>/conferences/id/review/</td>
+<td>GET, POST</td>
+<td>Форма и сохранение отзыва</td>
+<td>После входа</td>
+</tr>
+<tr>
+<td>/participants/</td>
+<td>GET</td>
+<td>Таблица с фильтром конференции</td>
+<td>is_staff</td>
+</tr>
+<tr>
+<td>/registrations/id/result/</td>
+<td>GET, POST</td>
+<td>Выставление результата</td>
+<td>is_staff</td>
+</tr>
+<tr>
+<td>/admin/</td>
+<td>GET, POST</td>
+<td>Стандартные административные интерфейсы</td>
+<td>По разрешениям Django</td>
+</tr>
+</tbody>
+</table>
+<p>GET на адресе удаления показывает подтверждение, но не изменяет БД.
+Для выхода GET явно запрещён и возвращает 405.</p>
+<h2 id="_4">Каталог</h2>
+<p>conference_list начинает с QuerySet всех конференций. Если q непустой,
+применяется поиск icontains по названию, описанию и месту через Q с логическим ИЛИ.
+Затем накладывается выбранная тематика. Поэтому поиск и фильтр работают совместно.</p>
+<p>Пример запроса:</p>
+<pre><code class="language-text">/?q=Сети&amp;topic=1&amp;page=2
+</code></pre>
+<p>Paginator разбивает отсортированную выборку по шесть записей. Тематики загружаются
+через prefetch_related, чтобы не выполнять отдельный запрос для каждой карточки.
+Параметр page исключается из копии QueryDict перед построением ссылок;
+остальные параметры сохраняются при переходе между страницами.</p>
+<p>Идентификаторы topic и conference проверяются filter_id: допускаются только
+ASCII-цифры, положительное число и диапазон signed bigint. Невалидный параметр
+игнорируется, в том числе строка из 5000 цифр. Корректный, но отсутствующий
+идентификатор даёт пустую выборку.</p>
+<h2 id="_5">Создание выступления</h2>
+<ol>
+<li>login_required проверяет сессию; гостю предлагается войти.</li>
+<li>Представление ищет конференцию и проверяет существующую регистрацию.</li>
+<li>RegistrationForm проверяет тему и аннотацию.</li>
+<li>save(commit=False) создаёт объект в памяти, не записывая его сразу.</li>
+<li>Сервер назначает conference и author из URL и request.user.</li>
+<li>Запись сохраняется внутри transaction.atomic; уникальность пары защищена БД.</li>
+<li>После успеха отправляется redirect на карточку конференции.</li>
+</ol>
+<p>Проверка существующей записи улучшает сообщение для пользователя. Уникальное
+ограничение всё равно необходимо: между предварительной проверкой и сохранением
+может прийти второй запрос.</p>
+<p>При недопустимой форме сервер возвращает ту же страницу с введёнными данными
+и ошибками. После успешной записи используется переход POST → redirect → GET,
+чтобы обычное обновление страницы не повторяло отправку формы.</p>
+<h2 id="_6">Редактирование и удаление</h2>
+<p>get_object_or_404 для редактирования и удаления ищет регистрацию одновременно
+по pk и author=request.user. Чужая и отсутствующая запись возвращают 404.
+Присланные поля другого автора, конференции или результата не входят в форму
+и не используются для изменения этих свойств.</p>
+<p>При удалении GET выводит confirm_delete.html. Только POST вызывает delete
+и возвращает пользователя к конференции. Передать чужой pk недостаточно:
+проверка владельца выполняется до обработки действия.</p>
+<h2 id="_7">Результаты и таблица участников</h2>
+<p>participants проверяет is_staff и выбирает регистрации с select_related
+для конференции и автора. Можно выбрать одну конференцию или показать все.
+В таблице нет паспортов, адресов и других данных практического модуля.</p>
+<p>result_edit также проверяет is_staff на сервере. Его ModelForm принимает
+только result с допустимыми значениями. Django-admin предоставляет второй
+предусмотренный условием способ выставления того же результата.</p>
+<h2 id="csrf">Формы, CSRF и шаблоны</h2>
+<p>Пользовательские шаблоны Jinja2 наследуют base.html. Окружение добавляет
+функции url, static и get_messages. request и csrf_input предоставляет
+Django-бэкенд Jinja2 при рендеринге с объектом запроса.</p>
+<p>Формы POST включают csrf_input. CsrfViewMiddleware сверяет токен с cookie;
+неверный или отсутствующий токен отклоняется до изменения данных.
+Сессии и хеширование паролей используют штатные средства Django.</p>
+<p>Автоэкранирование включено Django-бэкендом Jinja2. Пользовательские названия,
+тексты и отзывы не помечаются safe. В форме фильтр safe используется только
+для статических подсказок Django, содержащих HTML-разметку.</p>
+<h2 id="_8">Коды ответов</h2>
+<table>
+<thead>
+<tr>
+<th>Ответ</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Страница, пустая выборка, форма с ошибками, подтверждение удаления</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Успешное сохранение, вход/выход, переход гостя на вход</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Обычный пользователь обращается к привилегированной странице; неверный CSRF</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Неизвестная конференция или недоступная чужая регистрация</td>
+</tr>
+<tr>
+<td>405</td>
+<td>GET на маршрут выхода</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">Практические интерфейсы</h2>
+<table>
+<thead>
+<tr>
+<th>Маршрут</th>
+<th>Представление</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/practice/owners/</td>
+<td>owner_list, FBV</td>
+<td>Список пользователей</td>
+</tr>
+<tr>
+<td>/practice/owner/id</td>
+<td>owner_detail, FBV</td>
+<td>Карточка и история владения</td>
+</tr>
+<tr>
+<td>/practice/owner/create/</td>
+<td>owner_create, FBV</td>
+<td>Создание владельца с паролем</td>
+</tr>
+<tr>
+<td>/practice/cars/</td>
+<td>CarList, CBV</td>
+<td>Список автомобилей</td>
+</tr>
+<tr>
+<td>/practice/cars/id/</td>
+<td>CarDetail, CBV</td>
+<td>Карточка</td>
+</tr>
+<tr>
+<td>/practice/cars/create/</td>
+<td>CarCreate, CBV</td>
+<td>Создание</td>
+</tr>
+<tr>
+<td>/practice/cars/id/edit/</td>
+<td>CarUpdate, CBV</td>
+<td>Редактирование</td>
+</tr>
+<tr>
+<td>/practice/cars/id/delete/</td>
+<td>CarDelete, CBV</td>
+<td>Подтверждение и удаление</td>
+</tr>
+</tbody>
+</table>
+<p>Все перечисленные учебные интерфейсы доступны только администраторам.
+Обычный пользователь конференций не получает доступ к паспортным данным.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
